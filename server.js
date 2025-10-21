@@ -14,6 +14,7 @@ const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static('frontend')); // serve arquivos estáticos
 
 function gerarCoquiTTS(texto, callback) {
   const outputFile = path.resolve(`tts_output_${Date.now()}.wav`);
@@ -33,7 +34,6 @@ app.post('/api/tts', async (req, res) => {
   if (!text || text.trim() === '') return res.status(400).json({ error: 'Texto é obrigatório.' });
 
   if (!ELEVENLABS_API_KEY) {
-    console.log('⚙️ Usando Coqui TTS offline');
     gerarCoquiTTS(text, (err, audioData) => {
       if (err) return res.status(500).json({ error: 'Falha ao gerar áudio Coqui.' });
       res.setHeader('Content-Type', 'audio/wav');
@@ -59,5 +59,5 @@ app.post('/api/tts', async (req, res) => {
   }
 });
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'frontend', 'index.html')));
+app.get('/', (req, res) => res.sendFile(path.resolve('frontend/index.html')));
 app.listen(PORT, () => console.log(`Servidor rodando em http://localhost:${PORT}`));
