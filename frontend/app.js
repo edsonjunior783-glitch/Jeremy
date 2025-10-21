@@ -14,7 +14,7 @@ async function gerarAudio() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
         text: texto, 
-        voice: 'bVMeCyTHy58xNoL34h3p' // voice_id Jeremy
+        voice: 'GcInE5boTOTZd3e9lioX' // voice_id Jeremy
       })
     });
 
