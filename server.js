@@ -73,10 +73,10 @@ app.post('/api/tts', async (req, res) => {
     res.send(audioBuffer);
 
   } catch (error) {
-    console.error('❌ Erro ElevenLabs detalhado:', error.response?.data || error.message);
-    res.status(500).json({
-      error: 'Falha ao gerar áudio ElevenLabs.',
-      details: error.response?.data || error.message
+  const detalhes = error.response?.data;
+  console.error('❌ Erro ElevenLabs detalhado:', detalhes ? JSON.stringify(detalhes) : error.message);
+  res.status(500).json({ error: 'Falha ao gerar áudio ElevenLabs.', details: detalhes });
+}
     });
   }
 });
