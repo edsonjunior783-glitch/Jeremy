@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000;
 const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
 
 // Voice ID da Jeremy
-const DEFAULT_VOICE_ID = 'bVMeCyTHy58xNoL34h3p';
+const DEFAULT_VOICE_ID = 'GcInE5boTOTZd3e9lioX';
 
 app.use(cors());
 app.use(bodyParser.json());
